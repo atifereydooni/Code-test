@@ -6,6 +6,8 @@ plugins {
 
 dependencies {
     implementation(project(Modules.navigationModule))
+    implementation(project(Modules.themeModule))
+
     implementation(Dependencies.retrofit)
     implementation(Dependencies.interceptor)
     api(Dependencies.converter)

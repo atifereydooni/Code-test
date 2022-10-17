@@ -9,8 +9,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.unit.dp
 import com.umain.home.presentation.ui.RestaurantState
+import com.umain.theme.Background
+import com.umain.theme.margin16Dp
+import com.umain.theme.margin20Dp
 
 @Composable
 fun RestaurantList(
@@ -19,9 +21,9 @@ fun RestaurantList(
     LazyColumn(
         modifier = Modifier
             .testTag(TagScrollableList)
-            .background(Color.Gray)
-            .padding(top = 20.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp),
+            .background(Background)
+            .padding(top = margin20Dp),
+        verticalArrangement = Arrangement.spacedBy(margin16Dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         items(state.restaurantsEntity.restaurants.size) { index ->
