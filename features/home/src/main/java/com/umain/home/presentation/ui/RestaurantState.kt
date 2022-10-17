@@ -1,4 +1,4 @@
-package com.umain.home.presentation
+package com.umain.home.presentation.ui
 
 import com.umain.home.domain.model.RestaurantEntity
 

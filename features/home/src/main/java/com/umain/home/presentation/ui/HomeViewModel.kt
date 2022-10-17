@@ -1,4 +1,4 @@
-package com.umain.home.presentation
+package com.umain.home.presentation.ui
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf

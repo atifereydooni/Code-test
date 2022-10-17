@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import com.google.accompanist.navigation.animation.composable
-import com.umain.home.presentation.HomeScreen
-import com.umain.home.presentation.HomeViewModel
+import com.umain.home.presentation.ui.HomeScreen
+import com.umain.home.presentation.ui.HomeViewModel
 import com.umain.navigation.destinations.HomeDestination
 import com.umain.navigation.destinations.NavigationDestination
 

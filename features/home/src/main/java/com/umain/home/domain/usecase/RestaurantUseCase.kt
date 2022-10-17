@@ -2,7 +2,7 @@ package com.umain.home.domain.usecase
 
 import com.umain.home.domain.model.RestaurantEntity
 import com.umain.home.domain.repo.RestaurantRepository
-import com.umain.home.handleRequest
+import com.umain.home.util.handleRequest
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

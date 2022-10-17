@@ -1,4 +1,4 @@
-package com.umain.home
+package com.umain.home.util
 
 import retrofit2.HttpException
 
