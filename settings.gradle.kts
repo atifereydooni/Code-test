@@ -10,4 +10,5 @@ rootProject.name = ("UmainCodeTest")
 include(
     ":app",
     ":core:navigation",
+    ":features:home"
 )
