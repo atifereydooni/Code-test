@@ -10,7 +10,7 @@ import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import kotlinx.coroutines.flow.collect
 import com.umain.navigation.INavigationManager
 import com.umain.navigation.NavigationEvent
-import com.umain.navigation.destinations.LoginDestination
+import com.umain.navigation.destinations.HomeDestination
 
 @Composable
 fun MainScaffold(
@@ -25,7 +25,7 @@ fun MainScaffold(
     Scaffold(scaffoldState = scaffoldState) {
         AnimatedNavHost(
             navController = navController,
-            startDestination = LoginDestination.route,
+            startDestination = HomeDestination.route,
             builder = {
                 addComposableDestinations()
             }
