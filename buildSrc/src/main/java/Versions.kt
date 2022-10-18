@@ -10,6 +10,7 @@ object Versions {
     const val compose = "1.1.0-beta03"
     const val composeActivity = "1.4.0"
     const val composeAccompanist = "0.21.3-beta"
+    const val composeCoil = "1.3.1"
     const val hiltNavigation = "1.0.0-alpha03"
     const val retrofit = "2.9.0"
     const val moshi = "1.12.0"

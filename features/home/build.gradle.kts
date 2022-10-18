@@ -13,4 +13,6 @@ dependencies {
     api(Dependencies.converter)
     api(Dependencies.moshi)
     kapt(Dependencies.moshi_kapt)
+
+    implementation(Dependencies.composeCoil)
 }
