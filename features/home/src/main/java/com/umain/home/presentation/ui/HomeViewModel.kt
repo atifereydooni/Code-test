@@ -2,6 +2,7 @@ package com.umain.home.presentation.ui
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.toMutableStateList
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.umain.home.domain.model.Restaurant
@@ -35,6 +36,9 @@ class HomeViewModel
             is RestaurantEvents.NavigateToRestaurantEvent -> {
                 navigateToRestaurantDetail(events.restaurant)
             }
+            is RestaurantEvents.AddSelectedFilterEvent -> {
+                addSelectedFilter(events.filter, events.addOrRemove)
+            }
         }
     }
 
@@ -44,7 +48,8 @@ class HomeViewModel
                 flow.collect {
                     restaurantState.value =
                         restaurantState.value.copy(
-                            restaurantsEntity = it
+                            restaurantsEntity = it,
+                            filteredRestaurantList = it.restaurants.toMutableStateList()
                         )
                     setSelectedRestaurant()
                     getOpen()
@@ -102,6 +107,33 @@ class HomeViewModel
                         )
                 }
             }
+        }
+    }
+
+    private fun addSelectedFilter(selectedFilter: String, addOrRemove: Boolean) {
+        if (addOrRemove) {
+            restaurantState.value.selectedFilters.add(selectedFilter)
+        } else {
+            restaurantState.value.selectedFilters.remove(selectedFilter)
+        }
+        filterRestaurantList()
+    }
+
+    private fun filterRestaurantList() {
+        restaurantState.value.filteredRestaurantList.clear()
+        if (restaurantState.value.selectedFilters.size > 0) {
+            for (restaurant in restaurantState.value.restaurantsEntity.restaurants) {
+                for (filter in restaurantState.value.selectedFilters) {
+                    if (restaurant.filterIds.contains(filter)) {
+                        restaurantState.value.filteredRestaurantList.add(restaurant)
+                    }
+                }
+            }
+        } else {
+            restaurantState.value =
+                restaurantState.value.copy(
+                    filteredRestaurantList = restaurantState.value.restaurantsEntity.restaurants.toMutableStateList()
+                )
         }
     }
 

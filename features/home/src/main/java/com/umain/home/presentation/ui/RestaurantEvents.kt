@@ -6,4 +6,7 @@ sealed class RestaurantEvents {
 
     data class NavigateToRestaurantEvent(val restaurant: Restaurant) : RestaurantEvents()
 
+    data class AddSelectedFilterEvent(val filter: String, val addOrRemove: Boolean) :
+        RestaurantEvents()
+
 }

@@ -27,10 +27,10 @@ fun RestaurantList(
         verticalArrangement = Arrangement.spacedBy(margin16Dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        items(state.restaurantsEntity.restaurants.size) { index ->
+        items(state.filteredRestaurantList.size) { index ->
             RestaurantItem(
                 state = state,
-                restaurant = state.restaurantsEntity.restaurants[index],
+                restaurant = state.filteredRestaurantList[index],
                 onClick = {
                     events(RestaurantEvents.NavigateToRestaurantEvent(it))
                 }
