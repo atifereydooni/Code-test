@@ -8,6 +8,7 @@ val margin8Dp = 8.dp
 val margin12Dp = 12.dp
 val margin16Dp = 16.dp
 val margin20Dp = 20.dp
+val margin70Dp = 70.dp
 
 val imageListSize = 150.dp
 val imageDetailSize = 250.dp

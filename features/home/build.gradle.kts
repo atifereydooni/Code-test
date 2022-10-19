@@ -15,4 +15,5 @@ dependencies {
     kapt(Dependencies.moshi_kapt)
 
     implementation(Dependencies.composeCoil)
+    implementation(Dependencies.composeMaterial)
 }

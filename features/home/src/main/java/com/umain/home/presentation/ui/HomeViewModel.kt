@@ -48,6 +48,7 @@ class HomeViewModel
                 flow.collect {
                     restaurantState.value =
                         restaurantState.value.copy(
+                            isLoading = false,
                             restaurantsEntity = it,
                             filteredRestaurantList = it.restaurants.toMutableStateList()
                         )
