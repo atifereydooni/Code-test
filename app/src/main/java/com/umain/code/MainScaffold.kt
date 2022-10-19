@@ -7,10 +7,10 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation.NavHostController
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
-import kotlinx.coroutines.flow.collect
 import com.umain.navigation.INavigationManager
 import com.umain.navigation.NavigationEvent
 import com.umain.navigation.destinations.HomeDestination
+import kotlinx.coroutines.flow.collect
 
 @Composable
 fun MainScaffold(

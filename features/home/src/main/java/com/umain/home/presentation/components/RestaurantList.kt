@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
+import com.umain.home.presentation.ui.RestaurantEvents
 import com.umain.home.presentation.ui.RestaurantState
 import com.umain.theme.Background
 import com.umain.theme.margin16Dp
@@ -16,6 +17,7 @@ import com.umain.theme.margin20Dp
 @Composable
 fun RestaurantList(
     state: RestaurantState,
+    events: (RestaurantEvents) -> Unit = {}
 ) {
     LazyColumn(
         modifier = Modifier
@@ -30,7 +32,7 @@ fun RestaurantList(
                 state = state,
                 restaurant = state.restaurantsEntity.restaurants[index],
                 onClick = {
-
+                    events(RestaurantEvents.NavigateToRestaurantEvent(it))
                 }
             )
         }

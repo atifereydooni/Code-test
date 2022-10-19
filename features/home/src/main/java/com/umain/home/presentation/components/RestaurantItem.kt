@@ -28,6 +28,7 @@ fun RestaurantItem(
     Card(
         elevation = margin5Dp,
         onClick = {
+            onClick(restaurant)
         },
         shape = RoundedCornerShape(topEnd = margin20Dp, topStart = margin20Dp),
         backgroundColor = Background,
@@ -56,7 +57,7 @@ fun RestaurantItem(
                         .padding(start = margin8Dp, end = margin8Dp, top = margin8Dp),
                     style = TextStyle(
                         color = DarkText,
-                        fontSize = fontSize18Dp
+                        fontSize = fontSize18Sp
                     ),
                     text = restaurant.name
                 )
@@ -70,7 +71,7 @@ fun RestaurantItem(
                             .padding(start = margin5Dp, end = margin8Dp),
                         style = TextStyle(
                             color = MiddleText,
-                            fontSize = fontSize14Dp,
+                            fontSize = fontSize14Sp,
                             fontWeight = FontWeight.Bold
                         ),
                         text = "${restaurant.rating}"
@@ -85,7 +86,7 @@ fun RestaurantItem(
                     Text(
                         style = TextStyle(
                             color = Subtitle,
-                            fontSize = fontSize14Dp,
+                            fontSize = fontSize14Sp,
                             fontWeight = FontWeight.Bold
                         ),
                         text = if (state.filterMap.containsKey(restaurant.filterIds[index])) {
@@ -114,7 +115,7 @@ fun RestaurantItem(
                         .padding(start = margin5Dp),
                     style = TextStyle(
                         color = MiddleText,
-                        fontSize = fontSize12Dp,
+                        fontSize = fontSize12Sp,
                         fontWeight = FontWeight.Bold
                     ),
                     text = if (restaurant.delivery_time_minutes == 1) "${restaurant.delivery_time_minutes} min" else "${restaurant.delivery_time_minutes} mins"
