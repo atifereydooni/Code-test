@@ -13,7 +13,9 @@ val margin70Dp = 70.dp
 val imageListSize = 150.dp
 val imageDetailSize = 250.dp
 val marginTopImageDetail = 200.dp
+val imageFilterSize = 50.dp
 
+val roundedShapeSize = 32.dp
 
 val fontSize12Sp = 12.sp
 val fontSize14Sp = 14.sp

@@ -1,10 +1,9 @@
 package com.umain.home.presentation.components
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -12,13 +11,14 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import coil.compose.rememberImagePainter
 import com.umain.home.presentation.ui.RestaurantEvents
 import com.umain.home.presentation.ui.RestaurantState
-import com.umain.theme.Background
-import com.umain.theme.Selected
+import com.umain.theme.*
 
 @Composable
 fun FilterList(
@@ -28,17 +28,22 @@ fun FilterList(
     Row(
         modifier = Modifier
             .fillMaxWidth()
+            .background(Background)
             .horizontalScroll(rememberScrollState())
-            .padding(top = 24.dp, end = 16.dp, bottom = 27.dp),
-        horizontalArrangement = Arrangement.spacedBy(4.dp),
+            .padding(top = margin16Dp, bottom = margin5Dp),
+        horizontalArrangement = Arrangement.spacedBy(margin5Dp),
     ) {
 
         state.filterMap.forEach { filter ->
             var isSelected by remember { mutableStateOf(false) }
-            FilterItem(filterName = filter.value.first, isSelected = isSelected, onSelected = {
-                isSelected = it
-                events(RestaurantEvents.AddSelectedFilterEvent(filter.key, it))
-            })
+            FilterItem(
+                filterName = filter.value.first,
+                filterImage = filter.value.second,
+                isSelected = isSelected,
+                onSelected = {
+                    isSelected = it
+                    events(RestaurantEvents.AddSelectedFilterEvent(filter.key, it))
+                })
         }
     }
 }
@@ -46,35 +51,41 @@ fun FilterList(
 @Composable
 fun FilterItem(
     filterName: String,
+    filterImage: String,
     isSelected: Boolean,
     onSelected: (isSelected: Boolean) -> Unit
 ) {
     Surface(
-        modifier = Modifier.toggleable(
-            value = isSelected,
-            onValueChange = {
-                onSelected(!isSelected)
-            }
-        ),
+        modifier = Modifier
+            .padding(start = margin16Dp)
+            .toggleable(
+                value = isSelected,
+                onValueChange = {
+                    onSelected(!isSelected)
+                }
+            ),
         elevation = if (isSelected) 0.dp else 2.dp,
-        shape = RoundedCornerShape(32.dp),
+        shape = RoundedCornerShape(roundedShapeSize),
         color = when (isSelected) {
             true -> Selected
             false -> Background
         }
     ) {
         Row {
-            val modifier = Modifier.padding(
-                top = 13.dp,
-                bottom = 13.dp,
-                start = 11.dp,
-                end = 11.dp
+            Image(
+                modifier = Modifier
+                    .width(imageFilterSize)
+                    .height(imageFilterSize),
+                contentScale = ContentScale.Crop,
+                painter = rememberImagePainter(filterImage),
+                contentDescription = ""
             )
             Text(
-                modifier = modifier,
+                modifier = Modifier.padding(margin16Dp),
                 text = filterName,
                 textAlign = TextAlign.Center,
-                fontSize = 12.sp,
+                fontSize = fontSize14Sp,
+                fontWeight = FontWeight.Bold
             )
         }
     }
