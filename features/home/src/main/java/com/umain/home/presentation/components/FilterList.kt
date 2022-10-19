@@ -12,6 +12,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -27,6 +28,7 @@ fun FilterList(
 ) {
     Row(
         modifier = Modifier
+            .testTag(TagFilterList)
             .fillMaxWidth()
             .background(Background)
             .horizontalScroll(rememberScrollState())
@@ -92,5 +94,6 @@ fun FilterItem(
 
 }
 
+const val TagFilterList = "TagFilterList"
 
 

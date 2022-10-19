@@ -9,6 +9,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import coil.compose.rememberImagePainter
@@ -23,6 +24,7 @@ fun RestaurantDetailScreen(
         Box {
             Image(
                 modifier = Modifier
+                    .testTag(TagRestaurantDetail)
                     .fillMaxWidth()
                     .height(imageDetailSize),
                 contentScale = ContentScale.Crop,
@@ -89,4 +91,5 @@ fun RestaurantDetailScreen(
     }
 }
 
+const val TagRestaurantDetail = "TagRestaurantDetail"
 

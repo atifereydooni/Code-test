@@ -5,6 +5,7 @@ import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import com.umain.theme.MiddleText
 import com.umain.theme.margin5Dp
 import com.umain.theme.margin70Dp
@@ -12,7 +13,8 @@ import com.umain.theme.margin70Dp
 @Composable
 fun LoadingView() {
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize()
+            .testTag(TagLoadingView),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -25,3 +27,5 @@ fun LoadingView() {
         )
     }
 }
+
+const val TagLoadingView = "TagLoadingView"

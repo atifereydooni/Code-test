@@ -42,7 +42,7 @@ class HomeViewModel
         }
     }
 
-    private fun getRestaurants() {
+    fun getRestaurants() {
         viewModelScope.launch {
             restaurantUseCase.getRestaurants().onSuccess { flow ->
                 flow.collect {
