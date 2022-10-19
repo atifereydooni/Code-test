@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.umain.home.domain.model.Restaurant
 import com.umain.home.domain.usecase.FilterUseCase
+import com.umain.home.domain.usecase.OpenUseCase
 import com.umain.home.domain.usecase.RestaurantUseCase
 import com.umain.navigation.INavigationManager
 import com.umain.navigation.destinations.RestaurantDetailDestination
@@ -19,7 +20,8 @@ class HomeViewModel
 @Inject constructor(
     private val navigationManager: INavigationManager,
     private val restaurantUseCase: RestaurantUseCase,
-    private val filterUseCase: FilterUseCase
+    private val filterUseCase: FilterUseCase,
+    private val openUseCase: OpenUseCase
 ) : ViewModel() {
 
     val restaurantState: MutableState<RestaurantState> = mutableStateOf(RestaurantState())
@@ -45,6 +47,7 @@ class HomeViewModel
                             restaurantsEntity = it
                         )
                     setSelectedRestaurant()
+                    getOpen()
 
                     for (restaurant in restaurantState.value.restaurantsEntity.restaurants) {
                         for (i in 0 until restaurant.filterIds.size) {
@@ -85,6 +88,19 @@ class HomeViewModel
                     restaurantState.value.copy(
                         selectedRestaurant = restaurantEntity
                     )
+            }
+        }
+    }
+
+    private fun getOpen() {
+        if (restaurantState.value.selectedRestaurantId != "") {
+            viewModelScope.launch {
+                openUseCase.getOpen(restaurantState.value.selectedRestaurantId).collect {
+                    restaurantState.value =
+                        restaurantState.value.copy(
+                            selectedRestaurantOpen = it.is_currently_open
+                        )
+                }
             }
         }
     }

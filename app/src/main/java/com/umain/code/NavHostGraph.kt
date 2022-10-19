@@ -23,8 +23,7 @@ private fun composableDestinations(): Map<NavigationDestination, @Composable () 
         RestaurantDetailDestination to {
             val viewModel: HomeViewModel = hiltViewModel()
             RestaurantDetailScreen(
-                state = viewModel.restaurantState.value,
-                events = viewModel::onTriggerEvent
+                state = viewModel.restaurantState.value
             )
         },
     )
@@ -41,8 +40,7 @@ fun NavGraphBuilder.addComposableDestinations() {
                     selectedRestaurantId = it.arguments?.getString(RestaurantDetailDestination.RESTAURANT_PARAM)!!
                 )
                 RestaurantDetailScreen(
-                    state = viewModel.restaurantState.value,
-                    events = viewModel::onTriggerEvent
+                    state = viewModel.restaurantState.value
                 )
             } else {
                 entry.value()

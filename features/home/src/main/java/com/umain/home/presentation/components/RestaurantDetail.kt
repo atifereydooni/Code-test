@@ -12,14 +12,12 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import coil.compose.rememberImagePainter
-import com.umain.home.presentation.ui.RestaurantEvents
 import com.umain.home.presentation.ui.RestaurantState
 import com.umain.theme.*
 
 @Composable
 fun RestaurantDetailScreen(
-    state: RestaurantState,
-    events: (RestaurantEvents) -> Unit = {}
+    state: RestaurantState
 ) {
     if (state.selectedRestaurant != null) {
         Box {
@@ -80,10 +78,10 @@ fun RestaurantDetailScreen(
                     modifier = Modifier
                         .padding(top = margin12Dp),
                     style = TextStyle(
-                        color = Positive,
+                        color = if (state.selectedRestaurantOpen) Positive else Negative,
                         fontSize = fontSize22Sp
                     ),
-                    text = "Open"
+                    text = if (state.selectedRestaurantOpen) "Open" else "Close"
                 )
             }
         }

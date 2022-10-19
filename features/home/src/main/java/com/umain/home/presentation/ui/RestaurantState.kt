@@ -10,5 +10,6 @@ data class RestaurantState(
     val restaurantsEntity: RestaurantEntity = RestaurantEntity(mutableListOf()),
     val filterMap: SnapshotStateMap<String, Pair<String, String>> = mutableStateMapOf(),
     val selectedRestaurant: Restaurant? = null,
-    val selectedRestaurantId: String =""
+    val selectedRestaurantId: String ="",
+    val selectedRestaurantOpen: Boolean = false
 )
