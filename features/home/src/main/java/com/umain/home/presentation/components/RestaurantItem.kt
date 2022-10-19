@@ -2,6 +2,7 @@ package com.umain.home.presentation.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Text
@@ -13,11 +14,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import coil.compose.rememberImagePainter
+import com.umain.home.R
 import com.umain.home.domain.model.Restaurant
+import com.umain.home.presentation.ui.RestaurantState
 import com.umain.theme.*
 
 @Composable
 fun RestaurantItem(
+    state: RestaurantState,
     restaurant: Restaurant,
     onClick: (restaurant: Restaurant) -> Unit
 ) {
@@ -40,7 +44,7 @@ fun RestaurantItem(
                     .height(imageListSize),
                 contentScale = ContentScale.Crop,
                 painter = rememberImagePainter(restaurant.image_url),
-                contentDescription = "mystudio"
+                contentDescription = ""
             )
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -59,7 +63,7 @@ fun RestaurantItem(
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Image(
                         painter = painterResource(id = com.umain.home.R.drawable.ic_star),
-                        contentDescription = "mystudio"
+                        contentDescription = ""
                     )
                     Text(
                         modifier = Modifier
@@ -73,25 +77,37 @@ fun RestaurantItem(
                     )
                 }
             }
-            Text(
+            LazyRow(
                 modifier = Modifier
-                    .padding(start = margin8Dp, end = margin8Dp)
-                    .wrapContentWidth(),
-                style = TextStyle(
-                    color = Subtitle,
-                    fontSize = fontSize15Dp,
-                    fontWeight = FontWeight.Bold
-                ),
-                text = "Take-Out"
-            )
+                    .padding(start = margin8Dp)
+            ) {
+                items(restaurant.filterIds.size) { index ->
+                    Text(
+                        style = TextStyle(
+                            color = Subtitle,
+                            fontSize = fontSize14Dp,
+                            fontWeight = FontWeight.Bold
+                        ),
+                        text = if (state.filterMap.containsKey(restaurant.filterIds[index])) {
+                            if (index == 0) {
+                                state.filterMap[restaurant.filterIds[index]]!!.first
+                            } else {
+                                " . ${state.filterMap[restaurant.filterIds[index]]!!.first}"
+                            }
+                        } else {
+                            ""
+                        }
+                    )
+                }
+            }
             Row(
                 modifier = Modifier
-                    .padding(start = margin8Dp, end = margin8Dp, top= margin5Dp),
+                    .padding(start = margin8Dp, end = margin8Dp, top = margin5Dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
-                    painter = painterResource(id = com.umain.home.R.drawable.ic_timer),
-                    contentDescription = "mystudio"
+                    painter = painterResource(id = R.drawable.ic_timer),
+                    contentDescription = ""
                 )
                 Text(
                     modifier = Modifier

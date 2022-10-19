@@ -7,7 +7,7 @@ suspend fun <T : Any> handleRequest(requestFunc: suspend () -> T): Result<T> {
         Result.success(requestFunc.invoke())
     } catch (e: HttpException) {
         when {
-            e.code() == 400 -> Result.failure(Throwable("user not found"))
+            e.code() == 400 -> Result.failure(Throwable(e.message()))
             else -> Result.failure(e)
         }
     }

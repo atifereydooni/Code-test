@@ -7,7 +7,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import com.umain.home.presentation.ui.RestaurantState
 import com.umain.theme.Background
@@ -28,6 +27,7 @@ fun RestaurantList(
     ) {
         items(state.restaurantsEntity.restaurants.size) { index ->
             RestaurantItem(
+                state = state,
                 restaurant = state.restaurantsEntity.restaurants[index],
                 onClick = {
 
