@@ -20,3 +20,11 @@ https://www.getpostman.com/collections/8313ff24de89d1c656cc
 
 ![Postman](https://user-images.githubusercontent.com/14177247/175901305-b23dafd0-31db-4c0b-b006-2212d34c9c46.png)
 
+The project is developed in the Kotlin language and also uses libraries such as Jetpack Compose, Hilt, Coroutines, Coil, and Retrofit. The JUnit and Mockk test libraries were used for unit testing.
+
+Multi-module using Clean Architecture alongside other components and MVVM architectural design patterns are used for project architecture.
+
+###ToDo
+Extra needed for the implementation by more time:
+The tests are not complete and should be more completed
+The app should be tested on more devices and latest android versions
